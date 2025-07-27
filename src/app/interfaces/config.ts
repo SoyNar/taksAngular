@@ -16,11 +16,11 @@ export interface headerRow
 
 export interface FormField {
     name:string,
-    value?: any,
+    value?: any | null,
     validators?:any[] | null
     type: 'text'|'number'|'email'|'password'|'date'|'textarea'|'select',
     label:string,
-    required?:string,
+    required?:boolean,
     placeholder?: string,
 }
 

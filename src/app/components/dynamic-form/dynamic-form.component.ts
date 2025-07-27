@@ -10,7 +10,7 @@ import { FormConfig, FormField } from '../../interfaces/config';
 })
 export class DynamicFormComponent implements OnInit {
 
-  @Input() fomrFields:FormField[] = []
+  @Input() formFields:FormField[] = []
   @Input() formData: any = {};
   @Input() config!: FormConfig;
   @Input() title = 'Formulario';
@@ -32,7 +32,7 @@ export class DynamicFormComponent implements OnInit {
   initForm(){
     //objeto donde se guardaran las propiedads y su formControl asociado
     const group:Record<string,any> = {};
-    this.fomrFields.forEach(field => {
+    this.formFields.forEach(field => {
       group[field.name] = [
         this.formData[field.name] || '',
         field.required ? Validators.required: []
@@ -64,7 +64,7 @@ private createForm(){
    if(field.required){
      validator.push(Validators.required);
    }
-   if(field.required ==='email'){
+   if(field.type ==='email'){
      validator.push(Validators.email);
    }
 
@@ -72,15 +72,15 @@ private createForm(){
     validator.push(...field.validators);
    }
 
-   formControls[field.name] || [field.value || "", validator];
-   this.dynamicForm = this.fb.group(formControls);
+   formControls[field.name] = [field.value || "", validator];
+ 
+  });
+    this.dynamicForm = this.fb.group(formControls);
 
    //emitir cambios en el formulario
    this.dynamicForm.valueChanges.subscribe((value)=>{
     this.formChange.emit(value);
-   })
-  })
-
+   });
 }
 
   isFieldInvalid(fielName:string):boolean{

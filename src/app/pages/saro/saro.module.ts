@@ -6,17 +6,17 @@ import { SaroComponent } from './saro.component';
 import { EventsComponent } from './events/events.component';
 import { SharedModule } from '../../shared/shared.module';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { LoginComponent } from '../login/login.component';
+import { LoginComponent } from '../auth/login/login.component';
 
 
 @NgModule({
   declarations: [
     SaroComponent,
-    EventsComponent,LoginComponent
+    EventsComponent,
   ],
   imports: [
     CommonModule,
-    SaroRoutingModule,SharedModule,HttpClientModule
+    SaroRoutingModule, SharedModule, HttpClientModule
   ]
 })
 export class SaroModule { }
